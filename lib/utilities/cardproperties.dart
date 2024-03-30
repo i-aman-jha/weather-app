@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
-import 'package:weather_app/utilities/direction.dart.dart';
+import 'package:weather_app/utilities/direction.dart';
 
 class PCard extends StatelessWidget {
   final String property;
