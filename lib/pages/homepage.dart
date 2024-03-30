@@ -1,10 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:weather_app/api.dart';
 import 'package:weather_app/utilities/cardproperties.dart';
 import 'package:weather_app/utilities/reusablefunctions.dart';
+import 'package:weather_app/utilities/sun.dart';
 import 'package:weather_app/utilities/weathercard.dart';
 import 'package:weather_icons/weather_icons.dart';
 
@@ -42,14 +42,9 @@ class _HomePageState extends State<HomePage> {
           'https://api.openweathermap.org/data/2.5/weather?q=$loc&appid=4804f3e29bb9276ca2341e61e6f6aab1';
       var data = await getdata(url);
       var decodedData = jsonDecode(data);
-      String url1 =
-          'https://api.openweathermap.org/geo/1.0/direct?q=$loc&limit=1&appid=4804f3e29bb9276ca2341e61e6f6aab1';
-      var data1 = await getdata(url1);
-      var decodedData1 = jsonDecode(data1);
 
-      lat = decodedData1[0]['lat'].toString();
-      lon = decodedData1[0]['lon'].toString();
-
+      lat = decodedData['coord']['lat'].toString();
+      lon = decodedData['coord']['lon'].toString();
       String url2 =
           'http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=$lat&lon=$lon&appid=4804f3e29bb9276ca2341e61e6f6aab1';
       var data2 = await getdata(url2);
@@ -182,6 +177,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Row(
                         children: [
+                          sun(
+                            sunrise: sunrise,
+                            sunset: sunset,),
+                        ],
+                      ),
+                      Row(
+                        children: [
                           PCard(
                             property: "AQI",
                             icon: Icons.masks,
@@ -200,24 +202,6 @@ class _HomePageState extends State<HomePage> {
                                                 ? "Very Poor"
                                                 : "",
                           ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          PCard(
-                              property: "    Sunrise",
-                              icon: WeatherIcons.sunrise,
-                              aqi: false,
-                              wind: false,
-                              windDirection: windDirection,
-                              value: unixtotime(sunrise)),
-                          PCard(
-                              property: "    Sunset",
-                              icon: WeatherIcons.sunset,
-                              aqi: false,
-                              wind: false,
-                              windDirection: windDirection,
-                              value: unixtotime(sunset)),
                         ],
                       ),
                     ],
