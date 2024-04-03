@@ -57,10 +57,8 @@ class _sunState extends State<sun> {
               ],
             ),
             sunPosition(
-              sunrise: DateTime.fromMillisecondsSinceEpoch(
-                  int.tryParse(widget.sunrise)??0 * 1000),
-              sunset: DateTime.fromMillisecondsSinceEpoch(
-                  int.tryParse(widget.sunset)??0 * 1000),
+              sunrise: unixtotime(widget.sunrise),
+              sunset: unixtotime(widget.sunset),
               current: DateTime.now(),
             ),
             Column(
