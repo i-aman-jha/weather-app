@@ -37,11 +37,11 @@ class _searchState extends State<search> {
                             BorderSide(color: Colors.white.withOpacity(0.6))),
                     hintText: "Your Location",
                     hintStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+                    suffixIcon: IconButton(onPressed: loc.clear, icon: const Icon(Icons.clear)),
+                    suffixIconColor: Colors.white,
                   ),
-                  // textInputAction: ,
                   onSubmitted: (String value) {
                     setState(() {
-                      // Update location variable when user submits the text field
                       location = value;
                       widget.getloc(location);
                       widget.fetchData(location);

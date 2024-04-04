@@ -12,10 +12,14 @@ String capitalizeFirstLetter(String s) {
   return s.substring(0, 1).toUpperCase() + s.substring(1);
 }
 
-String unixtotime(String s){
-  if(s.isEmpty) return s;
-  int unix=int.parse(s);
-  DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(unix * 1000);
+DateTime unixtotime(String s){
+    int unix=int.tryParse(s)??0;
+    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(unix * 1000);
+    return dateTime;
+}
+
+String time(String s){
+  DateTime dateTime = unixtotime(s);
   String dt=dateTime.toString();
   dt=dt.substring(10,16);
   dt=timeformatchange(dt);

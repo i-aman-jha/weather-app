@@ -49,7 +49,7 @@ class _sunState extends State<sun> {
                 ),
                 const SizedBox(height: 10,),
                 Text(
-                      unixtotime(widget.sunrise),
+                      time(widget.sunrise),
                       style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500)
@@ -57,10 +57,8 @@ class _sunState extends State<sun> {
               ],
             ),
             sunPosition(
-              sunrise: DateTime.fromMillisecondsSinceEpoch(
-                  int.tryParse(widget.sunrise)??0 * 1000),
-              sunset: DateTime.fromMillisecondsSinceEpoch(
-                  int.tryParse(widget.sunset)??0 * 1000),
+              sunrise: unixtotime(widget.sunrise),
+              sunset: unixtotime(widget.sunset),
               current: DateTime.now(),
             ),
             Column(
@@ -83,7 +81,7 @@ class _sunState extends State<sun> {
                 ),
                 const SizedBox(height: 10,),
                 Text(
-                      unixtotime(widget.sunset),
+                      time(widget.sunset),
                       style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500)
